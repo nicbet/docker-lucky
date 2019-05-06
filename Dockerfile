@@ -11,7 +11,10 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt-get update && apt-get install -y build-essential libssl-dev libreadline-dev libxml2-dev libcurl4-openssl-dev software-properties-common libffi-dev nodejs yarn
 
 # Install Postgres Client Libraries
-RUN apt-get install -y postgresql-common libpq-dev
+RUN apt-get install -y postgresql-common libpq-dev postgresql-client
+
+# Heroku
+RUN curl https://cli-assets.heroku.com/install.sh | sh
 
 # Install lucky
 RUN git clone https://github.com/luckyframework/lucky_cli.git \
@@ -25,4 +28,5 @@ RUN git clone https://github.com/luckyframework/lucky_cli.git \
 
 WORKDIR /app
 
+EXPOSE 5000
 CMD ["lucky", "-v"]
