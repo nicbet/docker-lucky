@@ -4,6 +4,7 @@ services:
   app:
     image: nicbet/docker-lucky:0.14.0
     build: .
+    command: lucky dev
     ports:
       - "5000:5000"
     volumes:
